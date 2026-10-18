@@ -1,0 +1,28 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:Trocampus.Controls"
+             x:Class="Trocampus.Pages.OfferAcceptedPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{StaticResource TcBackground}">
+    <Grid RowDefinitions="*,Auto">
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout Padding="28" Spacing="22" VerticalOptions="Center">
+                <Label Text="Échange confirmé" Style="{StaticResource TcTitle}" />
+                <Label Text="Votre proposition est acceptée. Vous pouvez maintenant préparer la remise ensemble."
+                       Style="{StaticResource TcSubtitle}" />
+                <Border Style="{StaticResource TcPanel}">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Prochain rendez-vous" Style="{StaticResource TcSectionTitle}" />
+                        <Label Text="Vendredi · 12 h 30" Style="{StaticResource TcBody14}" />
+                        <Label Text="Devant l’entrée de la BU La Doua" Style="{StaticResource TcMeta12}" />
+                    </VerticalStackLayout>
+                </Border>
+                <Button Text="Voir mes échanges" Style="{StaticResource TcPrimaryButton}"
+                        Clicked="OnExchangesClicked" />
+                <Button Text="Écrire à Sami" Style="{StaticResource TcSecondaryButton}"
+                        Clicked="OnMessagesClicked" />
+            </VerticalStackLayout>
+        </ScrollView>
+        <controls:BottomTabBar Grid.Row="1" ActiveTab="exchanges" />
+    </Grid>
+</ContentPage>

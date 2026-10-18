@@ -1,0 +1,110 @@
+TROCAMPUS - CONNEXION D'UN APPAREIL ANDROID
+===========================================
+
+Ce document explique comment déployer et lancer l'application MAUI Trocampus
+sur un téléphone Android, par câble USB ou en Wi-Fi, depuis VS Code sous Windows.
+
+PRÉREQUIS
+---------
+- Le projet Trocampus est ouvert dans VS Code.
+- .NET MAUI et les outils Android nécessaires sont installés.
+- Le téléphone Android est déverrouillé et utilise un compte disposant des droits
+  nécessaires pour activer les options développeur.
+- Dans VS Code, le projet de démarrage doit être Trocampus.csproj.
+
+Sélectionner le projet de démarrage :
+1. Ouvrir la palette de commandes avec Ctrl+Shift+P.
+2. Exécuter « .NET MAUI: Select Startup Project ».
+3. Choisir Trocampus.csproj.
+
+CONNEXION PAR CÂBLE USB
+-----------------------
+1. Sur le téléphone, ouvrir Paramètres > À propos du téléphone.
+2. Appuyer plusieurs fois sur « Numéro de build » jusqu'à l'activation du mode
+   développeur. Le nom et l'emplacement exacts peuvent varier selon le fabricant.
+3. Revenir dans les paramètres et ouvrir Options pour les développeurs.
+4. Activer « Débogage USB ».
+5. Brancher le téléphone au PC avec un câble USB compatible avec le transfert
+   de données, puis déverrouiller l'écran.
+6. Sur le téléphone, accepter la demande « Autoriser le débogage USB » et, si
+   souhaité, cocher l'option pour toujours autoriser cet ordinateur.
+7. Dans VS Code, ouvrir Ctrl+Shift+P puis exécuter « .NET MAUI: Refresh Devices ».
+8. Choisir le téléphone Android dans la liste des cibles MAUI.
+9. Lancer la commande .NET MAUI de démarrage/débogage du projet.
+
+CONNEXION SANS FIL (WI-FI)
+--------------------------
+La fonction « Débogage sans fil » intégrée à Android nécessite généralement
+Android 11 ou une version ultérieure. Le PC et le téléphone doivent être
+connectés au même réseau Wi-Fi. Certains réseaux d'entreprise, publics ou invités
+isolent les appareils entre eux et bloquent cette connexion.
+
+Association initiale :
+1. Sur le téléphone, activer les Options pour les développeurs si nécessaire.
+2. Ouvrir Options pour les développeurs > Débogage sans fil et activer la fonction.
+3. Choisir « Associer un appareil avec un code d'association ».
+4. L'écran affiche une adresse IP, un port d'association et un code temporaire.
+5. Sur le PC, ouvrir un terminal PowerShell dans VS Code et exécuter la commande
+   ci-dessous en remplaçant l'adresse et le port par ceux affichés sur le téléphone :
+
+   adb pair ADRESSE_IP_DU_TELEPHONE:PORT_D_ASSOCIATION
+
+6. Saisir le code d'association demandé dans le terminal.
+7. Revenir à l'écran principal « Débogage sans fil » du téléphone. Il affiche
+   l'adresse IP et un autre port, celui de connexion/débogage. Exécuter :
+
+   adb connect ADRESSE_IP_DU_TELEPHONE:PORT_DE_CONNEXION
+
+8. Dans VS Code, exécuter « .NET MAUI: Refresh Devices ».
+9. Sélectionner le téléphone Android dans les cibles de débogage MAUI.
+10. Lancer la commande .NET MAUI de démarrage/débogage du projet.
+
+Important : utiliser le port d'association uniquement avec « adb pair » et le
+port indiqué sur l'écran principal de débogage sans fil avec « adb connect ».
+Les ports sont attribués par Android et peuvent changer. Ne pas réutiliser un
+ancien port affiché lors d'une précédente connexion.
+
+Si PowerShell répond que « adb » n'est pas reconnu :
+- Vérifier que Android SDK Platform-Tools est installé avec Android Studio ou les
+  outils Android du workload MAUI.
+- Essayer d'appeler adb avec son chemin complet. Le chemin courant sous Windows est :
+
+   & "$env:LOCALAPPDATA\Android\Sdk\platform-tools\adb.exe" pair ADRESSE_IP:PORT
+   & "$env:LOCALAPPDATA\Android\Sdk\platform-tools\adb.exe" connect ADRESSE_IP:PORT
+
+- Si le SDK est installé ailleurs, remplacer ce chemin par le dossier réel
+  contenant adb.exe. Dans les commandes de la procédure Wi-Fi, le code temporaire
+  doit être saisi après l'invite produite par « adb pair ».
+
+DÉPANNAGE
+---------
+Le téléphone n'apparaît pas dans VS Code :
+- Déverrouiller le téléphone et accepter l'autorisation de débogage USB.
+- Essayer un autre câble ou port USB; certains câbles ne font que recharger.
+- Exécuter « .NET MAUI: Refresh Devices » dans la palette de commandes.
+- Pour le Wi-Fi, vérifier que Débogage sans fil est encore activé, que les deux
+  appareils sont sur le même réseau, puis refaire « adb connect » avec le port
+  actuellement affiché sur le téléphone.
+- Sur Windows, autoriser les outils Android dans le pare-feu si une demande est
+  présentée. Éviter les réseaux Wi-Fi publics pour le débogage.
+
+La commande de lancement indique qu'aucun projet de démarrage n'est défini :
+- Exécuter « .NET MAUI: Select Startup Project » et choisir Trocampus.csproj.
+
+La compilation échoue :
+- Consulter le panneau Problèmes et la sortie de débogage MAUI dans VS Code.
+- Vérifier que les workloads MAUI et Android correspondent à la version du SDK
+  utilisée par le projet.
+
+Android antérieur à la version 11 :
+- Utiliser la connexion USB décrite plus haut. Le mode « Débogage sans fil » avec
+  association par code n'est pas disponible sur toutes ces versions.
+
+SÉCURITÉ
+--------
+Le débogage USB et sans fil donne à cet ordinateur des capacités importantes sur
+le téléphone. N'accepter l'association que pour un ordinateur de confiance,
+utiliser un réseau de confiance, puis désactiver le débogage sans fil lorsque le
+développement est terminé. Pour retirer une autorisation, utiliser « Révoquer les
+autorisations de débogage USB » dans les Options pour les développeurs ou oublier
+l'ordinateur dans les appareils associés au Débogage sans fil.

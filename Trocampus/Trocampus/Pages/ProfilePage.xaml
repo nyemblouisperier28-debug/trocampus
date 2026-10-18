@@ -1,0 +1,54 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:Trocampus.Controls"
+             x:Class="Trocampus.Pages.ProfilePage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{StaticResource TcBackground}">
+    <Grid RowDefinitions="*,Auto">
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout>
+                <controls:AppHeader />
+                <VerticalStackLayout Padding="28,16,28,28" Spacing="20">
+                    <Label Text="Mon profil" Style="{StaticResource TcTitle}" />
+                    <Border Style="{StaticResource TcPanel}">
+                        <VerticalStackLayout Spacing="10">
+                            <Label Text="Léa Martin" Style="{StaticResource TcSectionTitle}" />
+                            <Label Text="Université Lyon 1 · étudiante en L2" Style="{StaticResource TcSubtitle}" />
+                            <Label Text="Étudiante à La Doua. J’aime les romans et les objets qui méritent une seconde vie." Style="{StaticResource TcBody14}" />
+                            <Label Text="★  4,9 / 5 · 8 avis · 5 échanges réussis" Style="{StaticResource TcBody14}" />
+                        </VerticalStackLayout>
+                    </Border>
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                        <Border Style="{StaticResource TcPanel}">
+                            <VerticalStackLayout Spacing="4">
+                                <Label Text="120" Style="{StaticResource TcTitle}" />
+                                <Label Text="points disponibles" Style="{StaticResource TcMeta12}" />
+                            </VerticalStackLayout>
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnPointsTapped" />
+                            </Border.GestureRecognizers>
+                        </Border>
+                        <Border Grid.Column="1" Style="{StaticResource TcPanel}">
+                            <VerticalStackLayout Spacing="4">
+                                <Label Text="5" Style="{StaticResource TcTitle}" />
+                                <Label Text="échanges réussis" Style="{StaticResource TcMeta12}" />
+                            </VerticalStackLayout>
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnHistoryTapped" />
+                            </Border.GestureRecognizers>
+                        </Border>
+                    </Grid>
+                    <Button Text="Modifier mon profil" Style="{StaticResource TcPrimaryButton}"
+                            Clicked="OnEditClicked" />
+                    <Button Text="Mes annonces" Style="{StaticResource TcSecondaryButton}"
+                            Clicked="OnListingsClicked" />
+                    <Button Text="Paramètres du compte" Style="{StaticResource TcSecondaryButton}"
+                            Clicked="OnSettingsClicked" />
+                    <Button Text="Se déconnecter" Style="{StaticResource TcSecondaryButton}"
+                            Clicked="OnLogoutClicked" />
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+        <controls:BottomTabBar Grid.Row="1" ActiveTab="profile" />
+    </Grid>
+</ContentPage>

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Trocampus.Controls.ListingCard">
+    <Border x:Name="Card" Style="{StaticResource TcPanel}">
+        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                <Border WidthRequest="72" HeightRequest="72" StrokeThickness="0"
+                    VerticalOptions="Center">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="8" />
+                </Border.StrokeShape>
+                <!-- Utilise une valeur de secours si l'image référencée est absente -->
+                <Image Aspect="AspectFill">
+                    <Image.Source>
+                        <Binding Path="PhotoSource" FallbackValue="accueil_trocampus.png" TargetNullValue="accueil_trocampus.png" />
+                    </Image.Source>
+                </Image>
+            </Border>
+            <VerticalStackLayout Grid.Column="1" Spacing="4" VerticalOptions="Center">
+                <Label Text="{Binding Title}" FontFamily="InterMedium" FontSize="14"
+                       LineHeight="1.45" TextColor="{StaticResource TcText}" />
+                <Label Text="{Binding Meta}" Style="{StaticResource TcMeta12}" />
+                <Label Text="{Binding Offer}" FontFamily="InterRegular" FontSize="13"
+                       LineHeight="1.45" TextColor="{StaticResource Primary}" />
+                <Label Text="Consulter l’objet  ›" Style="{StaticResource TcLinkLarge}" />
+            </VerticalStackLayout>
+        </Grid>
+    </Border>
+</ContentView>

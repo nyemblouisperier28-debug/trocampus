@@ -1,0 +1,50 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:Trocampus.Controls"
+             x:Class="Trocampus.Pages.ExchangesPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{StaticResource TcBackground}">
+    <Grid RowDefinitions="*,Auto">
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout>
+                <controls:AppHeader />
+                <VerticalStackLayout Padding="28,16,28,28" Spacing="20">
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Mes échanges" Style="{StaticResource TcTitle}" />
+                        <Label Text="Rendez-vous à venir et échanges terminés." Style="{StaticResource TcSubtitle}" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="12">
+                        <Label Text="À venir · 1" Style="{StaticResource TcSectionTitle}" />
+                        <Border Style="{StaticResource TcPanel}">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Text="Lampe de bureau ↔ bouilloire compacte" Style="{StaticResource TcBody14}"
+                                       FontFamily="InterSemiBold" />
+                                <Label Text="Avec Sami Benali · vendredi à 12 h 30" Style="{StaticResource TcMeta12}" />
+                                <Label Text="Devant l’entrée de la BU La Doua" Style="{StaticResource TcMeta12}" />
+                                <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                                    <Button Text="Ouvrir la messagerie" Style="{StaticResource TcPrimaryButton}"
+                                            Clicked="OnMessagesClicked" />
+                                    <Button Grid.Column="1" Text="Historique" Style="{StaticResource TcSecondaryButton}"
+                                            Clicked="OnHistoryClicked" />
+                                </Grid>
+                            </VerticalStackLayout>
+                        </Border>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="12">
+                        <Label Text="Récemment terminés" Style="{StaticResource TcSectionTitle}" />
+                        <Border Style="{StaticResource TcPanel}">
+                            <VerticalStackLayout Spacing="6">
+                                <Label Text="Manuels de statistiques ↔ romans" Style="{StaticResource TcBody14}"
+                                       FontFamily="InterSemiBold" />
+                                <Label Text="Avec Nina Moreau · terminé le 2 octobre" Style="{StaticResource TcMeta12}" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </VerticalStackLayout>
+                    <Button Text="Offres reçues" Style="{StaticResource TcSecondaryButton}"
+                            Clicked="OnOffersClicked" />
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+        <controls:BottomTabBar Grid.Row="1" ActiveTab="exchanges" />
+    </Grid>
+</ContentPage>

@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:Trocampus.Controls"
+             x:Class="Trocampus.Pages.HomePage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{StaticResource TcBackground}">
+    <Grid RowDefinitions="*,Auto">
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout>
+                <!-- En-tête : logo + avatar -->
+                <Grid ColumnDefinitions="*,Auto" Padding="28,0" HeightRequest="64">
+                    <controls:BrandLogo VerticalOptions="Center" />
+                    <Border Grid.Column="1" WidthRequest="36" HeightRequest="36"
+                            BackgroundColor="White" Stroke="{StaticResource TcBorderBrush}"
+                            StrokeThickness="1" VerticalOptions="Center">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="18" />
+                        </Border.StrokeShape>
+                        <Label Text="L" FontFamily="InterRegular" FontSize="14"
+                               TextColor="{StaticResource TcText}"
+                               HorizontalOptions="Center" VerticalOptions="Center" />
+                    </Border>
+                </Grid>
+                <!-- Bannière / illustration issue des maquettes -->
+                <Image Source="accueil_trocampus.png" Aspect="AspectFill" HeightRequest="160" Margin="28,12,28,0" />
+                <!-- Contenu de l’accueil -->
+                <VerticalStackLayout Padding="28,16,28,28" Spacing="24">
+                    <!-- Découvrir et publier -->
+                    <VerticalStackLayout Spacing="20">
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="Bonjour, Léa !" Style="{StaticResource TcTitle}" />
+                            <Label Text="Un objet à trouver ou à échanger ?"
+                                   FontFamily="InterRegular" FontSize="15"
+                                   TextColor="{StaticResource TcMuted}" />
+                        </VerticalStackLayout>
+                        <!-- Recherche par proximité -->
+                        <VerticalStackLayout Spacing="12">
+                            <Border Style="{StaticResource TcInputBorder}">
+                                <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
+                                    <Image Source="search.png" WidthRequest="20" HeightRequest="20"
+                                           VerticalOptions="Center" />
+                                    <Entry Grid.Column="1" Placeholder="Rechercher un objet"
+                                           Style="{StaticResource TcInput}"
+                                           VerticalOptions="Center"
+                                           ReturnType="Search" Completed="OnSearchCompleted" />
+                                </Grid>
+                            </Border>
+                            <Grid ColumnDefinitions="*,Auto">
+                                <HorizontalStackLayout Spacing="6" VerticalOptions="Center">
+                                    <Image Source="map_pin.png" WidthRequest="16" HeightRequest="16"
+                                           VerticalOptions="Center" />
+                                    <Label Text="Campus Lyon · à moins de 2 km"
+                                           Style="{StaticResource TcCaption}"
+                                           VerticalOptions="Center" />
+                                </HorizontalStackLayout>
+                                <Label Grid.Column="1" Text="Modifier"
+                                       Style="{StaticResource TcLink}" VerticalOptions="Center" />
+                            </Grid>
+                        </VerticalStackLayout>
+                        <Button Text="Publier une annonce" ImageSource="plus.png"
+                                ContentLayout="Left,8" Style="{StaticResource TcPrimaryButton}"
+                                Clicked="OnPublishClicked" />
+                    </VerticalStackLayout>
+                    <!-- Mon espace -->
+                    <VerticalStackLayout Spacing="24">
+                        <!-- Mes points -->
+                        <Border BackgroundColor="{StaticResource TcSurfaceTint}"
+                                StrokeThickness="0" Padding="16">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10" />
+                            </Border.StrokeShape>
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnPointsTapped" />
+                            </Border.GestureRecognizers>
+                            <VerticalStackLayout Spacing="12">
+                                <Grid ColumnDefinitions="*,Auto">
+                                    <Label VerticalOptions="Center" FontFamily="InterRegular"
+                                           TextColor="{StaticResource TcText}">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="120 " FontSize="22" />
+                                                <Span Text="points disponibles" FontSize="14" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Image Grid.Column="1" Source="chevron_right_18.png"
+                                           WidthRequest="18" HeightRequest="18" />
+                                </Grid>
+                                <HorizontalStackLayout Spacing="20">
+                                    <Label FontSize="13" TextColor="{StaticResource TcMuted}">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="+180" TextColor="{StaticResource Primary}" />
+                                                <Span Text=" gagnés" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label Text="−60 dépensés" FontSize="13"
+                                           TextColor="{StaticResource TcMuted}" />
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+                        </Border>
+                        <!-- Mes raccourcis -->
+                        <VerticalStackLayout Spacing="12">
+                            <Label Text="Tout à portée de main" FontFamily="InterSemiBold"
+                                   FontSize="15" TextColor="{StaticResource TcText}" />
+                            <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto"
+                                  ColumnSpacing="12" RowSpacing="12">
+                                <controls:QuickAccessCard Grid.Row="0" Grid.Column="0"
+                                    IconSource="card_package.png"
+                                    Title="Annonces d’objets"
+                                    Subtitle="Consulter les objets"
+                                    Tapped="OnListingsTapped" />
+                                <controls:QuickAccessCard Grid.Row="0" Grid.Column="1"
+                                    IconSource="card_exchange.png"
+                                    Title="Proposer un échange"
+                                    Subtitle="2 propositions reçues"
+                                    Tapped="OnOffersTapped" />
+                                <controls:QuickAccessCard Grid.Row="1" Grid.Column="0"
+                                    IconSource="card_message.png"
+                                    Title="Messagerie"
+                                    Subtitle="2 messages non lus"
+                                    Tapped="OnMessagesTapped" />
+                                <controls:QuickAccessCard Grid.Row="1" Grid.Column="1"
+                                    IconSource="card_history.png"
+                                    Title="Historique"
+                                    Subtitle="5 échanges terminés"
+                                    Tapped="OnHistoryTapped" />
+                            </Grid>
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+        <!-- Navigation -->
+        <controls:BottomTabBar Grid.Row="1" ActiveTab="home" />
+    </Grid>
+</ContentPage>

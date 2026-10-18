@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Trocampus.Controls"
+             x:Class="Trocampus.Controls.TransactionCard">
+    <Border x:Name="Card" Style="{StaticResource TcPanel}">
+        <VerticalStackLayout Spacing="12">
+            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                <VerticalStackLayout Spacing="4">
+                    <Label Text="{Binding Title}" FontFamily="InterMedium" FontSize="14"
+                           LineHeight="1.45" TextColor="{StaticResource TcText}" />
+                    <Label Text="{Binding Date}" Style="{StaticResource TcMeta12}" />
+                </VerticalStackLayout>
+                <Label x:Name="AmountLabel" Grid.Column="1" Text="{Binding Amount}"
+                       FontFamily="InterMedium" FontSize="17" VerticalOptions="Start" />
+            </Grid>
+            <local:StatusBadge Text="{Binding Status}" />
+        </VerticalStackLayout>
+    </Border>
+</ContentView>

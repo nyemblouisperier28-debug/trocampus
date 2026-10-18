@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Trocampus.Controls.MessageBubble">
+    <VerticalStackLayout x:Name="Root" Spacing="4">
+        <Border x:Name="Bubble" WidthRequest="276" Padding="12" StrokeThickness="1">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="10" />
+            </Border.StrokeShape>
+            <Label Text="{Binding Text}" Style="{StaticResource TcBody14}" />
+        </Border>
+        <Label x:Name="CaptionLabel" Text="{Binding Caption}" FontFamily="InterRegular"
+               FontSize="11" TextColor="{StaticResource TcMuted}" />
+    </VerticalStackLayout>
+</ContentView>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Trocampus.Controls"
+             x:Class="Trocampus.Controls.ConversationCard">
+    <Border x:Name="Card" Padding="16" StrokeThickness="1">
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="10" />
+        </Border.StrokeShape>
+        <VerticalStackLayout Spacing="12">
+            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                <Border WidthRequest="40" HeightRequest="40" StrokeThickness="0"
+                        BackgroundColor="{StaticResource TcSurfaceTint}"
+                        VerticalOptions="Center">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="20" />
+                    </Border.StrokeShape>
+                    <Label Text="{Binding Initial}" FontFamily="InterRegular" FontSize="16"
+                           TextColor="{StaticResource Primary}"
+                           HorizontalOptions="Center" VerticalOptions="Center" />
+                </Border>
+                <VerticalStackLayout Grid.Column="1" Spacing="3" VerticalOptions="Center">
+                    <Label Text="{Binding Name}" FontFamily="InterMedium" FontSize="14"
+                           LineHeight="1.45" TextColor="{StaticResource TcText}" />
+                    <Label Text="{Binding Subtitle}" Style="{StaticResource TcMeta12}" />
+                </VerticalStackLayout>
+            </Grid>
+            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                <Label Text="{Binding Preview}" FontFamily="InterRegular" FontSize="13"
+                       LineHeight="1.45" TextColor="{StaticResource TcText}"
+                       VerticalOptions="Center" />
+                <local:StatusBadge Grid.Column="1" Text="{Binding BadgeText}"
+                                   IsVisible="{Binding HasBadge}" VerticalOptions="Center" />
+            </Grid>
+        </VerticalStackLayout>
+    </Border>
+</ContentView>

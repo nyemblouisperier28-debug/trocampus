@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:Trocampus.Controls"
+             x:Class="Trocampus.Pages.LoginPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{StaticResource TcBackground}">
+    <ScrollView>
+        <VerticalStackLayout Padding="28,30,28,52">
+            <controls:BrandLogo HorizontalOptions="Start" Margin="0,0,0,54" />
+            <VerticalStackLayout Spacing="28">
+                <!-- Introduction -->
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Heureux de vous revoir !" Style="{StaticResource TcTitle}" />
+                    <Label Text="Connectez-vous pour échanger vos objets entre étudiants."
+                           Style="{StaticResource TcSubtitle}" />
+                </VerticalStackLayout>
+                <!-- Formulaire de connexion -->
+                <VerticalStackLayout Spacing="20">
+                    <controls:LabeledEntry x:Name="EmailField"
+                                           Title="Adresse e-mail"
+                                           Placeholder="vous@exemple.fr"
+                                           Keyboard="Email" />
+                    <VerticalStackLayout Spacing="12">
+                        <controls:LabeledEntry x:Name="PasswordField"
+                                               Title="Mot de passe"
+                                               Placeholder="Votre mot de passe"
+                                               IsPassword="True" />
+                        <Label Text="Mot de passe oublié ?" Style="{StaticResource TcLink}"
+                               HorizontalOptions="End">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnForgotTapped" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </VerticalStackLayout>
+                    <Button Text="Se connecter" Style="{StaticResource TcPrimaryButton}"
+                            Clicked="OnLoginClicked" />
+                </VerticalStackLayout>
+                <!-- Lien vers l’inscription -->
+                <Label HorizontalTextAlignment="Center" FontSize="14" LineHeight="1.7"
+                       TextColor="{StaticResource TcMuted}">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Pas encore de compte ? " />
+                            <Span Text="S’inscrire" FontFamily="InterSemiBold"
+                                  TextColor="{StaticResource Primary}">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnRegisterTapped" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label Text="Espace administration · démonstration"
+                       Style="{StaticResource TcLink}" HorizontalTextAlignment="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnAdminTapped" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

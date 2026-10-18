@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Trocampus.Controls"
+             x:Class="Trocampus.Controls.AppHeader">
+    <Grid x:Name="Root" ColumnDefinitions="*,Auto" Padding="28,0" HeightRequest="64">
+        <local:BrandLogo VerticalOptions="Center" />
+        <Border Grid.Column="1" WidthRequest="36" HeightRequest="36" BackgroundColor="White"
+                Stroke="{StaticResource TcBorderBrush}" StrokeThickness="1"
+                VerticalOptions="Center">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="18" />
+            </Border.StrokeShape>
+            <Label Text="{Binding Initial}" FontFamily="InterRegular" FontSize="14"
+                   TextColor="{StaticResource TcText}"
+                   HorizontalOptions="Center" VerticalOptions="Center" />
+        </Border>
+    </Grid>
+</ContentView>

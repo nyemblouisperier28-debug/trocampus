@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:pages="clr-namespace:Trocampus.Pages"
+       x:Class="Trocampus.AppShell"
+       Shell.FlyoutBehavior="Disabled"
+       Shell.NavBarIsVisible="False"
+       Shell.TabBarIsVisible="False"
+       BackgroundColor="{StaticResource TcBackground}">
+    <ShellContent Route="login"    ContentTemplate="{DataTemplate pages:LoginPage}" />
+    <ShellContent Route="register" ContentTemplate="{DataTemplate pages:RegisterPage}" />
+    <ShellContent Route="forgot"   ContentTemplate="{DataTemplate pages:ForgotPasswordPage}" />
+    <ShellContent Route="home"     ContentTemplate="{DataTemplate pages:HomePage}" />
+    <ShellContent Route="listings" ContentTemplate="{DataTemplate pages:ListingsPage}" />
+   <ShellContent Route="listing-detail" ContentTemplate="{DataTemplate pages:ListingDetailPage}" />
+   <ShellContent Route="search"   ContentTemplate="{DataTemplate pages:SearchPage}" />
+   <ShellContent Route="publish"  ContentTemplate="{DataTemplate pages:PublishPage}" />
+   <ShellContent Route="offers"   ContentTemplate="{DataTemplate pages:OffersPage}" />
+   <ShellContent Route="offer-detail" ContentTemplate="{DataTemplate pages:OfferDetailPage}" />
+   <ShellContent Route="offer-accepted" ContentTemplate="{DataTemplate pages:OfferAcceptedPage}" />
+   <ShellContent Route="offer-refused" ContentTemplate="{DataTemplate pages:OfferRefusedPage}" />
+   <ShellContent Route="exchanges" ContentTemplate="{DataTemplate pages:ExchangesPage}" />
+    <ShellContent Route="messages" ContentTemplate="{DataTemplate pages:MessagesPage}" />
+    <ShellContent Route="points"   ContentTemplate="{DataTemplate pages:PointsPage}" />
+    <ShellContent Route="history"  ContentTemplate="{DataTemplate pages:HistoryPage}" />
+   <ShellContent Route="profile"  ContentTemplate="{DataTemplate pages:ProfilePage}" />
+   <ShellContent Route="settings" ContentTemplate="{DataTemplate pages:SettingsPage}" />
+   <ShellContent Route="admin" ContentTemplate="{DataTemplate pages:AdminDashboardPage}" />
+   <ShellContent Route="admin-accounts" ContentTemplate="{DataTemplate pages:AdminSectionPage}" />
+   <ShellContent Route="admin-account-detail" ContentTemplate="{DataTemplate pages:AdminSectionPage}" />
+   <ShellContent Route="admin-complaints" ContentTemplate="{DataTemplate pages:AdminSectionPage}" />
+   <ShellContent Route="admin-case" ContentTemplate="{DataTemplate pages:AdminSectionPage}" />
+   <ShellContent Route="admin-traffic" ContentTemplate="{DataTemplate pages:AdminSectionPage}" />
+   <ShellContent Route="admin-reviews" ContentTemplate="{DataTemplate pages:AdminSectionPage}" />
+   <ShellContent Route="admin-journal" ContentTemplate="{DataTemplate pages:AdminSectionPage}" />
+   <ShellContent Route="admin-settings" ContentTemplate="{DataTemplate pages:AdminSectionPage}" />
+</Shell>

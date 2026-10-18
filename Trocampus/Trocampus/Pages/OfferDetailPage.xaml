@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:Trocampus.Controls"
+             x:Class="Trocampus.Pages.OfferDetailPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{StaticResource TcBackground}">
+    <Grid RowDefinitions="*,Auto">
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout>
+                <controls:AppHeader />
+                <VerticalStackLayout Padding="28,16,28,28" Spacing="20">
+                    <Label Text="‹  Offres reçues" Style="{StaticResource TcLinkLarge}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnBackTapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="La proposition de Sami" Style="{StaticResource TcTitle}" />
+                        <Label Text="Reçue aujourd’hui · en attente de votre réponse." Style="{StaticResource TcSubtitle}" />
+                    </VerticalStackLayout>
+                    <Border Style="{StaticResource TcPanel}">
+                        <VerticalStackLayout Spacing="14">
+                            <Label Text="Votre objet" Style="{StaticResource TcSectionTitle}" />
+                            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="14">
+                                <Image Source="photo_lampe.png" WidthRequest="88" HeightRequest="88" Aspect="AspectFill" />
+                                <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="4">
+                                    <Label Text="Lampe de bureau" FontFamily="InterSemiBold" />
+                                    <Label Text="Bon état · La Doua" Style="{StaticResource TcMeta12}" />
+                                </VerticalStackLayout>
+                            </Grid>
+                            <Label Text="↕" HorizontalTextAlignment="Center" TextColor="{StaticResource Primary}" FontSize="22" />
+                            <Label Text="Objet proposé" Style="{StaticResource TcSectionTitle}" />
+                            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="14">
+                                <Image Source="photo_bouilloire.png" WidthRequest="88" HeightRequest="88" Aspect="AspectFill" />
+                                <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="4">
+                                    <Label Text="Bouilloire compacte" FontFamily="InterSemiBold" />
+                                    <Label Text="Très bon état · 800 m" Style="{StaticResource TcMeta12}" />
+                                </VerticalStackLayout>
+                            </Grid>
+                        </VerticalStackLayout>
+                    </Border>
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Message de Sami" Style="{StaticResource TcSectionTitle}" />
+                        <Label Text="Elle fonctionne très bien. Je peux vous la remettre vendredi sur le campus." Style="{StaticResource TcBody14}" />
+                    </VerticalStackLayout>
+                    <Border Style="{StaticResource TcPanel}">
+                        <VerticalStackLayout Spacing="6">
+                            <Label Text="Sami Benali" FontFamily="InterSemiBold" />
+                            <Label Text="Université Lyon 1 · étudiant en L2" Style="{StaticResource TcMeta12}" />
+                            <Label Text="★  4,8 / 5 · 6 avis · 7 échanges réussis" Style="{StaticResource TcBody14}" />
+                            <Label Text="Voir son profil · Envoyer un message" Style="{StaticResource TcLinkLarge}">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnMessagesTapped" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </VerticalStackLayout>
+                    </Border>
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                        <Button Text="Accepter" Style="{StaticResource TcPrimaryButton}" Clicked="OnAcceptClicked" />
+                        <Button Grid.Column="1" Text="Refuser" Style="{StaticResource TcSecondaryButton}" Clicked="OnRefuseClicked" />
+                    </Grid>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+        <controls:BottomTabBar Grid.Row="1" ActiveTab="exchanges" />
+    </Grid>
+</ContentPage>

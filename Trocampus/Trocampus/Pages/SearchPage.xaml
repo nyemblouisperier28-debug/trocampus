@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:Trocampus.Controls"
+             x:Class="Trocampus.Pages.SearchPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{StaticResource TcBackground}">
+    <Grid RowDefinitions="*,Auto">
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout>
+                <controls:AppHeader />
+                <VerticalStackLayout Padding="28,16,28,28" Spacing="20"
+                                     MinimumHeightRequest="644">
+                    <!-- Introduction -->
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Rechercher un objet" Style="{StaticResource TcTitle}" />
+                        <Label Text="Trouvez ce qu’il vous faut, tout près."
+                               Style="{StaticResource TcSubtitle}" LineHeight="1.45" />
+                    </VerticalStackLayout>
+                    <!-- Votre recherche -->
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Votre recherche" Style="{StaticResource TcBody14}" />
+                        <Border Style="{StaticResource TcFieldBox}">
+                            <Entry x:Name="QueryEntry" Text="Manuels de statistiques"
+                                   Style="{StaticResource TcSearchInput}"
+                                   ReturnType="Search" Completed="OnSearchCompleted" />
+                        </Border>
+                    </VerticalStackLayout>
+                    <!-- Lieu ou zone -->
+                    <controls:SelectField Title="Lieu ou zone" Value="Campus Lyon · La Doua"
+                                          Options="Campus Lyon · La Doua,Campus Lyon · Charpennes" />
+                    <Label Text="Utiliser ma position actuelle" Style="{StaticResource TcLinkLarge}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnUseLocationTapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <!-- Critères de proximité -->
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                        <controls:SelectField Title="Rayon" Value="2 km"
+                                              Options="500 m,1 km,2 km,5 km" />
+                        <controls:SelectField Grid.Column="1" Title="Type d’objet"
+                                              Value="Manuels"
+                                              Options="Tous les types,Manuels,Meubles,Appareils" />
+                    </Grid>
+                    <!-- Filtres -->
+                    <controls:FilterChips Items="Tous,Vente,Échange" SelectedIndex="0" />
+                    <Button Text="Rechercher" Style="{StaticResource TcPrimaryButton}"
+                            Clicked="OnSearchClicked" />
+                    <!-- Résultats -->
+                    <VerticalStackLayout Spacing="12">
+                        <Label Text="2 résultats à moins de 2 km"
+                               Style="{StaticResource TcSectionTitle}" />
+                        <Label Text="Du plus proche au plus éloigné."
+                               Style="{StaticResource TcCaption}" LineHeight="1.45" />
+                        <controls:ListingCard PhotoSource="photo_manuels.png"
+                            Title="Manuels de statistiques"
+                            Meta="Nina · La Doua · 600 m"
+                            Offer="Échange · bon état"
+                            Tapped="OnListingTapped" />
+                        <controls:ListingCard PhotoSource="photo_manuels.png"
+                            Title="Statistiques · licence 1"
+                            Meta="Inès · Charpennes · 1,4 km"
+                            Offer="Vente · 12 €"
+                            Tapped="OnListingTapped" />
+                    </VerticalStackLayout>
+                    <Label Text="Voir toutes les annonces" Style="{StaticResource TcLinkLarge}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnAllListingsTapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+        <controls:BottomTabBar Grid.Row="1" ActiveTab="search" />
+    </Grid>
+</ContentPage>

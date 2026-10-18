@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:Trocampus.Controls"
+             x:Class="Trocampus.Pages.RegisterPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{StaticResource TcBackground}">
+    <ScrollView>
+        <VerticalStackLayout Padding="28,30,28,52">
+            <controls:BrandLogo HorizontalOptions="Start" Margin="0,0,0,54" />
+            <VerticalStackLayout Spacing="28">
+                <!-- Introduction -->
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Bienvenue sur le campus" Style="{StaticResource TcTitle}" />
+                    <Label Text="Manuels, meubles, appareils… donnez une seconde vie à vos objets."
+                           Style="{StaticResource TcSubtitle}" />
+                </VerticalStackLayout>
+                <!-- Formulaire d’inscription -->
+                <VerticalStackLayout Spacing="20">
+                    <controls:LabeledEntry x:Name="FirstNameField"
+                                           Title="Prénom"
+                                           Placeholder="Votre prénom" />
+                    <controls:LabeledEntry x:Name="EmailField"
+                                           Title="Adresse e-mail"
+                                           Placeholder="vous@exemple.fr"
+                                           Keyboard="Email" />
+                    <controls:LabeledEntry x:Name="PasswordField"
+                                           Title="Mot de passe"
+                                           Placeholder="Créez un mot de passe"
+                                           Hint="8 caractères minimum."
+                                           IsPassword="True" />
+                    <Button Text="Créer mon compte" Style="{StaticResource TcPrimaryButton}"
+                            Clicked="OnCreateAccountClicked" />
+                    <Label HorizontalTextAlignment="Center" FontSize="13" LineHeight="1.5"
+                           TextColor="{StaticResource TcMuted}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="En vous inscrivant, vous acceptez nos " />
+                                <Span Text="conditions d’utilisation"
+                                      TextColor="{StaticResource Primary}"
+                                      TextDecorations="Underline" />
+                                <Span Text="." />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </VerticalStackLayout>
+                <!-- Lien vers la connexion -->
+                <Label HorizontalTextAlignment="Center" FontSize="14" LineHeight="1.7"
+                       TextColor="{StaticResource TcMuted}">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Déjà un compte ? " />
+                            <Span Text="Se connecter" FontFamily="InterSemiBold"
+                                  TextColor="{StaticResource Primary}">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnLoginTapped" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

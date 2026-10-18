@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:Trocampus.Controls"
+             x:Class="Trocampus.Pages.MessagesPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{StaticResource TcBackground}">
+    <Grid RowDefinitions="*,Auto">
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout>
+                <controls:AppHeader />
+                <VerticalStackLayout Padding="28,16,28,28" Spacing="20"
+                                     MinimumHeightRequest="644">
+                    <!-- Introduction -->
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Messagerie" Style="{StaticResource TcTitle}" />
+                        <Label Text="Vos conversations avec les étudiants."
+                               Style="{StaticResource TcSubtitle}" LineHeight="1.45" />
+                    </VerticalStackLayout>
+                    <!-- Recherche -->
+                    <Border Style="{StaticResource TcFieldBox}">
+                        <Entry Placeholder="Rechercher une conversation"
+                               Style="{StaticResource TcSearchInput}" />
+                    </Border>
+                    <!-- Conversations -->
+                    <VerticalStackLayout Spacing="12">
+                        <Label Text="Conversations" Style="{StaticResource TcSectionTitle}" />
+                        <controls:ConversationCard Initial="S" Name="Sami Benali"
+                            Subtitle="Lampe ↔ bouilloire · 09:38"
+                            Preview="À vendredi, devant la bibliothèque !"
+                            IsHighlighted="True" />
+                        <controls:ConversationCard Initial="N" Name="Nina Moreau"
+                            Subtitle="Manuels de statistiques · hier"
+                            Preview="Mon offre vous intéresse ?"
+                            BadgeText="2 non lus" />
+                    </VerticalStackLayout>
+                    <!-- Discussion avec Sami -->
+                    <VerticalStackLayout Spacing="12">
+                        <Label Text="Discussion avec Sami" Style="{StaticResource TcSectionTitle}" />
+                        <Border Style="{StaticResource TcPanel}">
+                            <VerticalStackLayout Spacing="12">
+                                <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                                    <Border WidthRequest="72" HeightRequest="72"
+                                            StrokeThickness="0" VerticalOptions="Center">
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="8" />
+                                        </Border.StrokeShape>
+                                        <Image Source="photo_lampe.png" Aspect="AspectFill" />
+                                    </Border>
+                                    <VerticalStackLayout Grid.Column="1" Spacing="4"
+                                                         VerticalOptions="Center">
+                                        <Label Text="Lampe ↔ bouilloire"
+                                               FontFamily="InterMedium" FontSize="14"
+                                               LineHeight="1.45"
+                                               TextColor="{StaticResource TcText}" />
+                                        <Label Text="Vous et Sami · offre acceptée"
+                                               Style="{StaticResource TcMeta12}" />
+                                    </VerticalStackLayout>
+                                </Grid>
+                                <Label Text="Voir le rendez-vous du 9 octobre"
+                                       Style="{StaticResource TcLinkLarge}">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnAppointmentTapped" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </VerticalStackLayout>
+                        </Border>
+                        <Label Text="Mercredi 7 octobre 2026" Style="{StaticResource TcMeta12}"
+                               HorizontalTextAlignment="Center" />
+                        <controls:MessageBubble
+                            Text="Bonjour Léa ! Je vous propose ma bouilloire contre votre lampe. Elle fonctionne très bien."
+                            Caption="Sami · 09:20" />
+                        <controls:MessageBubble IsOutgoing="True"
+                            Text="Bonjour Sami, parfait ! J’accepte votre offre. Vendredi à 12 h 30 à la BU ?"
+                            Caption="Vous · 09:26 · lu" />
+                        <controls:MessageBubble
+                            Text="Oui, devant l’entrée de la BU La Doua. À vendredi !"
+                            Caption="Sami · 09:38" />
+                        <!-- Zone de rédaction -->
+                        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                            <Border Style="{StaticResource TcFieldBox}">
+                                <Entry x:Name="MessageEntry" Placeholder="Écrire un message…"
+                                       Style="{StaticResource TcSearchInput}"
+                                       ReturnType="Send" Completed="OnSendClicked" />
+                            </Border>
+                            <Border Grid.Column="1" WidthRequest="44" HeightRequest="44"
+                                    StrokeThickness="0" VerticalOptions="Center"
+                                    BackgroundColor="{StaticResource Primary}">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="10" />
+                                </Border.StrokeShape>
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnSendTapped" />
+                                </Border.GestureRecognizers>
+                                <Image Source="send.png" WidthRequest="20" HeightRequest="20"
+                                       HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Border>
+                        </Grid>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+        <controls:BottomTabBar Grid.Row="1" ActiveTab="home" />
+    </Grid>
+</ContentPage>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Trocampus.Controls"
+             x:Class="Trocampus.Controls.ExchangeResultCard">
+    <Border x:Name="Card" Style="{StaticResource TcPanel}">
+        <VerticalStackLayout Spacing="12">
+            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                <local:StatusBadge Text="{Binding ResultText}" Kind="{Binding ResultKind}"
+                                   VerticalOptions="Center" />
+                <Label Grid.Column="1" Text="{Binding Date}"
+                       Style="{StaticResource TcMeta12}" VerticalOptions="Center" />
+            </Grid>
+            <Label Text="{Binding Title}" Style="{StaticResource TcBody14}"
+                   FontFamily="InterMedium" />
+            <Label Text="{Binding Partner}" FontFamily="InterRegular" FontSize="13"
+                   LineHeight="1.45" TextColor="{StaticResource TcMuted}" />
+            <Label Text="{Binding Note}" FontFamily="InterRegular" FontSize="12"
+                   LineHeight="1.45" TextColor="{StaticResource TcDangerText}"
+                   IsVisible="{Binding HasNote}" />
+        </VerticalStackLayout>
+    </Border>
+</ContentView>

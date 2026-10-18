@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:Trocampus.Controls"
+             xmlns:pages="clr-namespace:Trocampus.Pages"
+             x:Class="Trocampus.Pages.PublishPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{StaticResource TcBackground}">
+    <Grid RowDefinitions="*,Auto">
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout>
+                <controls:AppHeader />
+                <VerticalStackLayout Padding="28,16,28,28" Spacing="18">
+                    <Label Text="‹  Mes annonces" Style="{StaticResource TcLinkLarge}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnBackTapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Publier une annonce" Style="{StaticResource TcTitle}" />
+                        <Label Text="Un objet utile pour un autre étudiant." Style="{StaticResource TcSubtitle}" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Titre" Style="{StaticResource TcFieldLabel}" />
+                        <Border Style="{StaticResource TcFieldBox}">
+                            <Entry x:Name="TitleEntry" Placeholder="Ex. Petite étagère en bois"
+                                   Style="{StaticResource TcSearchInput}" />
+                        </Border>
+                    </VerticalStackLayout>
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="Type / catégorie" Style="{StaticResource TcFieldLabel}" />
+                            <Picker x:Name="CategoryPicker" Title="Choisir"
+                                    ItemsSource="{x:Static pages:PublishPage.Categories}" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1" Spacing="8">
+                            <Label Text="État" Style="{StaticResource TcFieldLabel}" />
+                            <Picker x:Name="ConditionPicker" Title="Choisir"
+                                    ItemsSource="{x:Static pages:PublishPage.Conditions}" />
+                        </VerticalStackLayout>
+                    </Grid>
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Description" Style="{StaticResource TcFieldLabel}" />
+                        <Border Style="{StaticResource TcFieldBox}" MinimumHeightRequest="120">
+                            <Editor x:Name="DescriptionEditor" Placeholder="Décrivez l’objet et ses éventuels défauts."
+                                    AutoSize="TextChanges" />
+                        </Border>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Je souhaite" Style="{StaticResource TcFieldLabel}" />
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                            <Button x:Name="SaleButton" Text="Vendre" Style="{StaticResource TcPrimaryButton}"
+                                    Clicked="OnSaleSelected" />
+                            <Button x:Name="ExchangeButton" Grid.Column="1" Text="Échanger"
+                                    Style="{StaticResource TcSecondaryButton}" Clicked="OnExchangeSelected" />
+                        </Grid>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout x:Name="PriceSection" Spacing="8">
+                        <Label Text="Prix de vente (€)" Style="{StaticResource TcFieldLabel}" />
+                        <Border Style="{StaticResource TcFieldBox}">
+                            <Entry x:Name="PriceEntry" Placeholder="0" Keyboard="Numeric"
+                                   Style="{StaticResource TcSearchInput}" />
+                        </Border>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Zone de remise" Style="{StaticResource TcFieldLabel}" />
+                        <Picker x:Name="LocationPicker" Title="Choisir un campus"
+                                ItemsSource="{x:Static pages:PublishPage.Locations}" />
+                        <Label Text="Votre adresse précise n’est pas affichée dans l’annonce."
+                               Style="{StaticResource TcMeta12}" />
+                    </VerticalStackLayout>
+                    <Button Text="Publier" Style="{StaticResource TcPrimaryButton}"
+                            Clicked="OnPublishClicked" />
+                    <Button Text="Enregistrer le brouillon" Style="{StaticResource TcSecondaryButton}"
+                            Clicked="OnSaveDraftClicked" />
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+        <controls:BottomTabBar Grid.Row="1" ActiveTab="profile" />
+    </Grid>
+</ContentPage>

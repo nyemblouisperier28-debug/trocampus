@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:Trocampus.Controls"
+             x:Class="Trocampus.Pages.ListingDetailPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{StaticResource TcBackground}">
+    <Grid RowDefinitions="*,Auto">
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout>
+                <controls:AppHeader />
+                <VerticalStackLayout Padding="28,16,28,28" Spacing="18">
+                    <Label Text="‹  Annonces d’objets" Style="{StaticResource TcLinkLarge}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnBackTapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Image Source="photo_manuels.png" HeightRequest="250" Aspect="AspectFill" />
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Manuels de statistiques" Style="{StaticResource TcTitle}" />
+                        <Label Text="Échange · bon état · La Doua · à 600 m"
+                               Style="{StaticResource TcSubtitle}" />
+                    </VerticalStackLayout>
+                    <Border Style="{StaticResource TcPanel}">
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="Description" Style="{StaticResource TcSectionTitle}" />
+                            <Label Text="Manuels de statistiques en bon état, utilisés en licence. Quelques annotations au crayon. Je cherche des romans en échange." Style="{StaticResource TcBody14}" />
+                        </VerticalStackLayout>
+                    </Border>
+                    <Border Style="{StaticResource TcPanel}">
+                        <VerticalStackLayout Spacing="6">
+                            <Label Text="Nina Moreau" FontFamily="InterSemiBold" />
+                            <Label Text="Université Lyon 1 · étudiante en L2" Style="{StaticResource TcMeta12}" />
+                            <Label Text="★  4,9 / 5 · 8 avis · 5 échanges réussis" Style="{StaticResource TcBody14}" />
+                        </VerticalStackLayout>
+                    </Border>
+                    <Button Text="Proposer un échange" Style="{StaticResource TcPrimaryButton}"
+                            Clicked="OnProposeClicked" />
+                    <Button Text="Contacter Nina" Style="{StaticResource TcSecondaryButton}"
+                            Clicked="OnMessageClicked" />
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+        <controls:BottomTabBar Grid.Row="1" ActiveTab="search" />
+    </Grid>
+</ContentPage>

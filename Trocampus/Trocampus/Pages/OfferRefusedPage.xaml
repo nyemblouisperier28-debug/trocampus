@@ -1,0 +1,19 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:Trocampus.Controls"
+             x:Class="Trocampus.Pages.OfferRefusedPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{StaticResource TcBackground}">
+    <Grid RowDefinitions="*,Auto">
+        <VerticalStackLayout Grid.Row="0" Padding="28" Spacing="18" VerticalOptions="Center">
+            <Label Text="Proposition refusée" Style="{StaticResource TcTitle}" />
+            <Label Text="La proposition a été refusée. Votre annonce reste visible et vous pouvez examiner les autres offres."
+                   Style="{StaticResource TcSubtitle}" />
+            <Button Text="Voir les autres offres" Style="{StaticResource TcPrimaryButton}"
+                    Clicked="OnOffersClicked" />
+            <Button Text="Revenir aux annonces" Style="{StaticResource TcSecondaryButton}"
+                    Clicked="OnListingsClicked" />
+        </VerticalStackLayout>
+        <controls:BottomTabBar Grid.Row="1" ActiveTab="exchanges" />
+    </Grid>
+</ContentPage>

@@ -1,0 +1,59 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:Trocampus.Controls"
+             xmlns:pages="clr-namespace:Trocampus.Pages"
+             x:Class="Trocampus.Pages.SettingsPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{StaticResource TcBackground}">
+    <Grid RowDefinitions="*,Auto">
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout>
+                <controls:AppHeader />
+                <VerticalStackLayout Padding="28,16,28,28" Spacing="20">
+                    <Label Text="Paramètres" Style="{StaticResource TcTitle}" />
+                    <VerticalStackLayout Spacing="12">
+                        <Label Text="Préférences" Style="{StaticResource TcSectionTitle}" />
+                        <Border Style="{StaticResource TcPanel}">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <VerticalStackLayout Spacing="4">
+                                    <Label Text="Utiliser ma position" Style="{StaticResource TcBody14}" />
+                                    <Label Text="Pour trier les objets par proximité" Style="{StaticResource TcMeta12}" />
+                                </VerticalStackLayout>
+                                <Switch x:Name="LocationSwitch" Grid.Column="1" Toggled="OnPreferenceChanged" />
+                            </Grid>
+                        </Border>
+                        <Border Style="{StaticResource TcPanel}">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <Label Text="Notifications de messages" Style="{StaticResource TcBody14}"
+                                       VerticalOptions="Center" />
+                                <Switch x:Name="MessagesSwitch" Grid.Column="1" Toggled="OnPreferenceChanged" />
+                            </Grid>
+                        </Border>
+                        <Border Style="{StaticResource TcPanel}">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <Label Text="Notifications d’offres" Style="{StaticResource TcBody14}"
+                                       VerticalOptions="Center" />
+                                <Switch x:Name="OffersSwitch" Grid.Column="1" Toggled="OnPreferenceChanged" />
+                            </Grid>
+                        </Border>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Langue" Style="{StaticResource TcSectionTitle}" />
+                        <Picker x:Name="LanguagePicker" Title="Langue"
+                                ItemsSource="{x:Static pages:SettingsPage.Languages}" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Apparence" Style="{StaticResource TcSectionTitle}" />
+                        <Picker x:Name="ThemePicker" Title="Thème"
+                                ItemsSource="{x:Static pages:SettingsPage.Themes}" />
+                    </VerticalStackLayout>
+                    <Button Text="Enregistrer" Style="{StaticResource TcPrimaryButton}"
+                            Clicked="OnSaveClicked" />
+                    <Button Text="Supprimer mon compte" TextColor="{StaticResource TcDangerText}"
+                            Style="{StaticResource TcSecondaryButton}" Clicked="OnDeleteClicked" />
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+        <controls:BottomTabBar Grid.Row="1" ActiveTab="profile" />
+    </Grid>
+</ContentPage>

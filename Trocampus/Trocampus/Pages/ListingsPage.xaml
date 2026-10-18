@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:Trocampus.Controls"
+             x:Class="Trocampus.Pages.ListingsPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{StaticResource TcBackground}">
+    <Grid RowDefinitions="*,Auto">
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout>
+                <controls:AppHeader />
+                <VerticalStackLayout Padding="28,16,28,28" Spacing="20"
+                                     MinimumHeightRequest="644">
+                    <!-- Introduction -->
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Annonces d’objets" Style="{StaticResource TcTitle}" />
+                        <Label Text="Les trouvailles du campus, près de vous."
+                               Style="{StaticResource TcSubtitle}" LineHeight="1.45" />
+                    </VerticalStackLayout>
+                    <!-- Recherche -->
+                    <Border Style="{StaticResource TcFieldBox}">
+                        <Entry x:Name="SearchEntry" Placeholder="Rechercher un objet"
+                               Style="{StaticResource TcSearchInput}"
+                               ReturnType="Search" Completed="OnSearchCompleted" />
+                    </Border>
+                    <!-- Zone et catégorie -->
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                        <controls:SelectField Title="Zone" Value="Campus Lyon"
+                                              Options="Campus Lyon,La Doua,Charpennes" />
+                        <controls:SelectField Grid.Column="1" Title="Type d’objet"
+                                              Value="Tous les types"
+                                              Options="Tous les types,Manuels,Meubles,Appareils" />
+                    </Grid>
+                    <!-- Filtres -->
+                    <controls:FilterChips Items="Tous,Vente,Échange" SelectedIndex="0" />
+                    <!-- Tri -->
+                    <controls:SelectField Title="Trier par" Value="Plus récents"
+                                          Options="Plus récents,Prix croissant,Prix décroissant,
+                                                   Points croissants,Points décroissants,Distance" />
+                    <Label Text="Autres tris : prix / points croissants ou décroissants, distance."
+                           Style="{StaticResource TcMeta12}" />
+                    <Button Text="+  Publier une annonce" Style="{StaticResource TcPrimaryButton}"
+                            Clicked="OnPublishClicked" />
+                    <!-- Objets disponibles -->
+                    <VerticalStackLayout Spacing="12">
+                        <Label Text="Objets disponibles · 5"
+                               Style="{StaticResource TcSectionTitle}" />
+                        <controls:ListingCard PhotoSource="photo_manuels.png"
+                            Title="Manuels de statistiques"
+                            Meta="Nina · La Doua · 600 m · aujourd’hui"
+                            Offer="Échange · cherche des romans"
+                            Tapped="OnListingTapped" />
+                        <controls:ListingCard PhotoSource="photo_chaise.png"
+                            Title="Chaise de bureau"
+                            Meta="Hugo · La Doua · 1,2 km · aujourd’hui"
+                            Offer="Vente · 25 €"
+                            Tapped="OnListingTapped" />
+                        <controls:ListingCard PhotoSource="photo_bouilloire.png"
+                            Title="Bouilloire compacte"
+                            Meta="Sami · La Doua · 800 m · hier"
+                            Offer="Échange · cherche une lampe"
+                            Tapped="OnListingTapped" />
+                        <controls:ListingCard PhotoSource="photo_calculatrice.png"
+                            Title="Calculatrice scientifique"
+                            Meta="Emma · Charpennes · 1,8 km · hier"
+                            Offer="Vente · 15 € ou 60 points"
+                            Tapped="OnListingTapped" />
+                        <controls:ListingCard PhotoSource="photo_manuels.png"
+                            Title="Statistiques · licence 1"
+                            Meta="Inès · Charpennes · 1,4 km · hier"
+                            Offer="Vente · 12 €"
+                            Tapped="OnListingTapped" />
+                    </VerticalStackLayout>
+                    <Label Text="Mes annonces · voir les offres reçues"
+                           Style="{StaticResource TcLinkLarge}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnMyListingsTapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+        <controls:BottomTabBar Grid.Row="1" ActiveTab="search" />
+    </Grid>
+</ContentPage>
