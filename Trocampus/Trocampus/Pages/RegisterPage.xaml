@@ -27,7 +27,7 @@
                     <controls:LabeledEntry x:Name="PasswordField"
                                            Title="Mot de passe"
                                            Placeholder="Créez un mot de passe"
-                                           Hint="8 caractères minimum."
+                                           Hint="10 caractères minimum."
                                            IsPassword="True" />
                     <Button Text="Créer mon compte" Style="{StaticResource TcPrimaryButton}"
                             Clicked="OnCreateAccountClicked" />

@@ -12,16 +12,16 @@
                     <Label Text="Mon profil" Style="{StaticResource TcTitle}" />
                     <Border Style="{StaticResource TcPanel}">
                         <VerticalStackLayout Spacing="10">
-                            <Label Text="Léa Martin" Style="{StaticResource TcSectionTitle}" />
-                            <Label Text="Université Lyon 1 · étudiante en L2" Style="{StaticResource TcSubtitle}" />
-                            <Label Text="Étudiante à La Doua. J’aime les romans et les objets qui méritent une seconde vie." Style="{StaticResource TcBody14}" />
-                            <Label Text="★  4,9 / 5 · 8 avis · 5 échanges réussis" Style="{StaticResource TcBody14}" />
+                            <Label x:Name="FullNameLabel" Style="{StaticResource TcSectionTitle}" />
+                            <Label x:Name="CampusRoleLabel" Style="{StaticResource TcSubtitle}" />
+                            <Label x:Name="EmailLabel" Style="{StaticResource TcBody14}" />
+                            <Label x:Name="RatingLabel" Style="{StaticResource TcBody14}" />
                         </VerticalStackLayout>
                     </Border>
                     <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
                         <Border Style="{StaticResource TcPanel}">
                             <VerticalStackLayout Spacing="4">
-                                <Label Text="120" Style="{StaticResource TcTitle}" />
+                                <Label x:Name="PointsLabel" Text="0" Style="{StaticResource TcTitle}" />
                                 <Label Text="points disponibles" Style="{StaticResource TcMeta12}" />
                             </VerticalStackLayout>
                             <Border.GestureRecognizers>
@@ -30,7 +30,7 @@
                         </Border>
                         <Border Grid.Column="1" Style="{StaticResource TcPanel}">
                             <VerticalStackLayout Spacing="4">
-                                <Label Text="5" Style="{StaticResource TcTitle}" />
+                                <Label x:Name="ExchangesLabel" Text="0" Style="{StaticResource TcTitle}" />
                                 <Label Text="échanges réussis" Style="{StaticResource TcMeta12}" />
                             </VerticalStackLayout>
                             <Border.GestureRecognizers>

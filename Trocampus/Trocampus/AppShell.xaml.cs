@@ -6,9 +6,35 @@ namespace Trocampus
 {
     public partial class AppShell : Shell
     {
+        private bool _redirectingToLogin;
+
         public AppShell()
         {
             InitializeComponent();
+            Navigating += OnNavigating;
+        }
+
+        private async void OnNavigating(object? sender, ShellNavigatingEventArgs e)
+        {
+            if (_redirectingToLogin)
+                return;
+
+            var route = e.Target.Location.OriginalString
+                .Split('?', 2)[0]
+                .TrimEnd('/')
+                .Split('/', StringSplitOptions.RemoveEmptyEntries)
+                .LastOrDefault();
+            if (route is null || route is "login" or "register" or "forgot")
+                return;
+
+            var session = await App.Services.GetRequiredService<Trocampus.Services.AuthSession>().GetSessionAsync();
+            if (session is not null)
+                return;
+
+            e.Cancel();
+            _redirectingToLogin = true;
+            await GoToAsync("//login");
+            _redirectingToLogin = false;
         }
         public static async Task DisplaySnackbarAsync(string message)
         {

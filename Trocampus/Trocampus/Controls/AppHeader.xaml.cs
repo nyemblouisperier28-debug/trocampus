@@ -13,5 +13,21 @@ public partial class AppHeader : ContentView
     {
         InitializeComponent();
         Root.BindingContext = this;
+        Loaded += OnLoaded;
+    }
+
+    private async void OnLoaded(object? sender, EventArgs e)
+    {
+        try
+        {
+            var session = await App.Services.GetRequiredService<Trocampus.Services.AuthSession>()
+                .GetSessionAsync();
+            if (!string.IsNullOrWhiteSpace(session?.FirstName))
+                Initial = session.FirstName[..1].ToUpperInvariant();
+        }
+        catch (Exception)
+        {
+            Initial = "?";
+        }
     }
 }

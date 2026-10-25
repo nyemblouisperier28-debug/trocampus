@@ -42,35 +42,11 @@
                     <Button Text="+  Publier une annonce" Style="{StaticResource TcPrimaryButton}"
                             Clicked="OnPublishClicked" />
                     <!-- Objets disponibles -->
-                    <VerticalStackLayout Spacing="12">
-                        <Label Text="Objets disponibles · 5"
-                               Style="{StaticResource TcSectionTitle}" />
-                        <controls:ListingCard PhotoSource="photo_manuels.png"
-                            Title="Manuels de statistiques"
-                            Meta="Nina · La Doua · 600 m · aujourd’hui"
-                            Offer="Échange · cherche des romans"
-                            Tapped="OnListingTapped" />
-                        <controls:ListingCard PhotoSource="photo_chaise.png"
-                            Title="Chaise de bureau"
-                            Meta="Hugo · La Doua · 1,2 km · aujourd’hui"
-                            Offer="Vente · 25 €"
-                            Tapped="OnListingTapped" />
-                        <controls:ListingCard PhotoSource="photo_bouilloire.png"
-                            Title="Bouilloire compacte"
-                            Meta="Sami · La Doua · 800 m · hier"
-                            Offer="Échange · cherche une lampe"
-                            Tapped="OnListingTapped" />
-                        <controls:ListingCard PhotoSource="photo_calculatrice.png"
-                            Title="Calculatrice scientifique"
-                            Meta="Emma · Charpennes · 1,8 km · hier"
-                            Offer="Vente · 15 € ou 60 points"
-                            Tapped="OnListingTapped" />
-                        <controls:ListingCard PhotoSource="photo_manuels.png"
-                            Title="Statistiques · licence 1"
-                            Meta="Inès · Charpennes · 1,4 km · hier"
-                            Offer="Vente · 12 €"
-                            Tapped="OnListingTapped" />
-                    </VerticalStackLayout>
+                        <VerticalStackLayout Spacing="12">
+                            <Label x:Name="ListingCountLabel" Text="Objets disponibles"
+                                   Style="{StaticResource TcSectionTitle}" />
+                            <VerticalStackLayout x:Name="ListingsResults" Spacing="12" />
+                        </VerticalStackLayout>
                     <Label Text="Mes annonces · voir les offres reçues"
                            Style="{StaticResource TcLinkLarge}">
                         <Label.GestureRecognizers>

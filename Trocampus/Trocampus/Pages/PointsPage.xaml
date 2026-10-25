@@ -33,13 +33,13 @@
                             <Label Text="Solde disponible" FontFamily="InterRegular"
                                    FontSize="13" LineHeight="1.45"
                                    TextColor="{StaticResource TcMuted}" />
-                            <Label Text="120 points" FontFamily="InterRegular" FontSize="32"
+                            <Label x:Name="BalanceLabel" Text="0 point" FontFamily="InterRegular" FontSize="32"
                                    LineHeight="1.45" TextColor="{StaticResource TcText}" />
                             <Grid ColumnDefinitions="*,*" ColumnSpacing="16">
-                                <Label Text="+180 gagnés" FontFamily="InterRegular"
+                                <Label x:Name="EarnedLabel" Text="+0 gagnés" FontFamily="InterRegular"
                                        FontSize="13" LineHeight="1.45"
                                        TextColor="{StaticResource Primary}" />
-                                <Label Grid.Column="1" Text="−60 dépensés"
+                                <Label x:Name="SpentLabel" Grid.Column="1" Text="−0 dépensés"
                                        FontFamily="InterRegular" FontSize="13"
                                        LineHeight="1.45" TextColor="{StaticResource TcMuted}" />
                             </Grid>
@@ -49,41 +49,27 @@
                     <controls:FilterChips Items="Tout,Gagnés,Dépensés" SelectedIndex="0" />
                     <controls:SelectField Title="Période" Value="Toutes les dates"
                                           Options="Toutes les dates,Septembre 2026,Octobre 2026" />
-                    <Label Text="6 mouvements confirmés · solde initial : 0 pt"
+                    <Label x:Name="TransactionsSummaryLabel" Text="Aucun mouvement · solde initial : 0 pt"
                            Style="{StaticResource TcMeta12}" />
                     <!-- Transactions -->
-                    <VerticalStackLayout Spacing="12">
-                        <controls:TransactionCard Title="Invitation · Inès" Date="6 oct. 2026"
-                            Amount="+20 pt" Status="Confirmée" />
-                        <controls:TransactionCard Title="Invitation · Paul" Date="3 oct. 2026"
-                            Amount="+20 pt" Status="Confirmée" />
-                        <controls:TransactionCard Title="Manuel d’économie · Hugo"
-                            Date="28 sept. 2026" Amount="−60 pt" Status="Terminée"
-                            IsCredit="False" />
-                        <controls:TransactionCard Title="Échange · petit bureau"
-                            Date="24 sept. 2026" Amount="+40 pt" Status="Confirmée" />
-                        <controls:TransactionCard Title="Échange · livres de droit"
-                            Date="18 sept. 2026" Amount="+40 pt" Status="Confirmée" />
-                        <controls:TransactionCard Title="Échange · grille-pain"
-                            Date="10 sept. 2026" Amount="+60 pt" Status="Confirmée" />
-                    </VerticalStackLayout>
+                          <VerticalStackLayout x:Name="TransactionsList" Spacing="8" />
                     <!-- Invitations en attente -->
                     <Border Style="{StaticResource TcPanel}">
                         <VerticalStackLayout Spacing="12">
-                            <controls:StatusBadge Text="Invitations en attente · 2"
+                            <controls:StatusBadge Text="Aucune invitation en attente"
                                                   Kind="Warning" />
                             <Label FontFamily="InterRegular" FontSize="13" LineHeight="1.45"
                                    TextColor="{StaticResource TcMuted}">
                                 <Label.FormattedText>
                                     <FormattedString>
-                                        <Span Text="Aucun point crédité pour ces invitations. " />
-                                        <Span Text="Elles ne sont pas incluses dans le solde." />
+                                        <Span Text="Les points gagnés et dépensés seront affichés ici après votre première activité." />
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
                         </VerticalStackLayout>
                     </Border>
-                    <Label Text="Voir mes invitations" Style="{StaticResource TcLinkLarge}" />
+                        <Button Text="Inviter une personne · +10 points" Style="{StaticResource TcSecondaryButton}"
+                            Clicked="OnInviteClicked" />
                 </VerticalStackLayout>
             </VerticalStackLayout>
         </ScrollView>

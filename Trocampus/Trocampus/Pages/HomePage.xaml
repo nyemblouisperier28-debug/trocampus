@@ -17,7 +17,7 @@
                         <Border.StrokeShape>
                             <RoundRectangle CornerRadius="18" />
                         </Border.StrokeShape>
-                        <Label Text="L" FontFamily="InterRegular" FontSize="14"
+                        <Label x:Name="AvatarInitialLabel" Text="?" FontFamily="InterRegular" FontSize="14"
                                TextColor="{StaticResource TcText}"
                                HorizontalOptions="Center" VerticalOptions="Center" />
                     </Border>
@@ -29,7 +29,7 @@
                     <!-- Découvrir et publier -->
                     <VerticalStackLayout Spacing="20">
                         <VerticalStackLayout Spacing="8">
-                            <Label Text="Bonjour, Léa !" Style="{StaticResource TcTitle}" />
+                            <Label x:Name="GreetingLabel" Text="Bonjour !" Style="{StaticResource TcTitle}" />
                             <Label Text="Un objet à trouver ou à échanger ?"
                                    FontFamily="InterRegular" FontSize="15"
                                    TextColor="{StaticResource TcMuted}" />
@@ -79,7 +79,7 @@
                                            TextColor="{StaticResource TcText}">
                                         <Label.FormattedText>
                                             <FormattedString>
-                                                <Span Text="120 " FontSize="22" />
+                                                <Span x:Name="PointsBalanceSpan" Text="0 " FontSize="22" />
                                                 <Span Text="points disponibles" FontSize="14" />
                                             </FormattedString>
                                         </Label.FormattedText>
@@ -91,12 +91,12 @@
                                     <Label FontSize="13" TextColor="{StaticResource TcMuted}">
                                         <Label.FormattedText>
                                             <FormattedString>
-                                                <Span Text="+180" TextColor="{StaticResource Primary}" />
+                                                <Span x:Name="PointsEarnedSpan" Text="+0" TextColor="{StaticResource Primary}" />
                                                 <Span Text=" gagnés" />
                                             </FormattedString>
                                         </Label.FormattedText>
                                     </Label>
-                                    <Label Text="−60 dépensés" FontSize="13"
+                                    <Label x:Name="PointsSpentLabel" Text="−0 dépensés" FontSize="13"
                                            TextColor="{StaticResource TcMuted}" />
                                 </HorizontalStackLayout>
                             </VerticalStackLayout>
@@ -112,20 +112,20 @@
                                     Title="Annonces d’objets"
                                     Subtitle="Consulter les objets"
                                     Tapped="OnListingsTapped" />
-                                <controls:QuickAccessCard Grid.Row="0" Grid.Column="1"
+                                <controls:QuickAccessCard x:Name="OffersQuickCard" Grid.Row="0" Grid.Column="1"
                                     IconSource="card_exchange.png"
                                     Title="Proposer un échange"
-                                    Subtitle="2 propositions reçues"
+                                    Subtitle="Aucune offre reçue"
                                     Tapped="OnOffersTapped" />
-                                <controls:QuickAccessCard Grid.Row="1" Grid.Column="0"
+                                <controls:QuickAccessCard x:Name="MessagesQuickCard" Grid.Row="1" Grid.Column="0"
                                     IconSource="card_message.png"
                                     Title="Messagerie"
-                                    Subtitle="2 messages non lus"
+                                    Subtitle="Aucun message non lu"
                                     Tapped="OnMessagesTapped" />
-                                <controls:QuickAccessCard Grid.Row="1" Grid.Column="1"
+                                <controls:QuickAccessCard x:Name="HistoryQuickCard" Grid.Row="1" Grid.Column="1"
                                     IconSource="card_history.png"
                                     Title="Historique"
-                                    Subtitle="5 échanges terminés"
+                                    Subtitle="Aucun échange terminé"
                                     Tapped="OnHistoryTapped" />
                             </Grid>
                         </VerticalStackLayout>

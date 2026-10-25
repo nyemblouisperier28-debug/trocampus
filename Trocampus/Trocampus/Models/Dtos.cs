@@ -3,6 +3,8 @@ namespace Trocampus.Models
     public class HomeSummary
     {
         public int Points { get; set; }
+        public int PointsEarned { get; set; }
+        public int PointsSpent { get; set; }
         public int MessagesUnread { get; set; }
         public int OffersReceived { get; set; }
         public int ExchangesCompleted { get; set; }

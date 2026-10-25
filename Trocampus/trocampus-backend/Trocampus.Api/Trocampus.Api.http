@@ -1,0 +1,32 @@
+@baseUrl = http://localhost:8081
+
+### Liveness
+GET {{baseUrl}}/health/live
+
+### Readiness
+GET {{baseUrl}}/health/ready
+
+### Categories
+GET {{baseUrl}}/api/categories
+
+### Public listings
+GET {{baseUrl}}/api/listings?take=10&skip=0
+
+### Register a development account
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+  "firstName": "Test",
+  "email": "test@example.local",
+  "password": "LocalDevPassword123"
+}
+
+### Log in
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "test@example.local",
+  "password": "LocalDevPassword123"
+}

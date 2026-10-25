@@ -16,9 +16,9 @@ WHERE c.name = 'Campus Lyon';
 
 INSERT INTO categories (name) VALUES ('Manuels'), ('Meubles'), ('Appareils'), ('Autres');
 
--- Valeurs lues dans la maquette (+20 par invitation, rayon 2 km) : à ajuster
+-- Récompenses d'invitation et rayon de recherche par défaut
 INSERT INTO app_settings (key, value, description) VALUES
-    ('points_per_invitation', '20',   'Points crédités pour une invitation confirmée'),
+    ('points_per_invitation', '10',   'Points crédités pour une invitation confirmée'),
     ('default_radius_m',      '2000', 'Rayon de recherche par défaut, en mètres'),
     ('offer_expiry_days',     '7',    'Durée avant expiration d''une offre en attente');
 

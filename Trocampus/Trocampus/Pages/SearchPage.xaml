@@ -27,8 +27,8 @@
                         </Border>
                     </VerticalStackLayout>
                     <!-- Lieu ou zone -->
-                    <controls:SelectField Title="Lieu ou zone" Value="Campus Lyon · La Doua"
-                                          Options="Campus Lyon · La Doua,Campus Lyon · Charpennes" />
+                    <controls:SelectField x:Name="ZoneField" Title="Lieu ou zone" Value="Campus Lyon · La Doua"
+                                          Options="Toutes les zones,Campus Lyon · La Doua,Campus Lyon · Charpennes" />
                     <Label Text="Utiliser ma position actuelle" Style="{StaticResource TcLinkLarge}">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnUseLocationTapped" />
@@ -36,9 +36,9 @@
                     </Label>
                     <!-- Critères de proximité -->
                     <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
-                        <controls:SelectField Title="Rayon" Value="2 km"
+                        <controls:SelectField x:Name="RadiusField" Title="Rayon" Value="2 km"
                                               Options="500 m,1 km,2 km,5 km" />
-                        <controls:SelectField Grid.Column="1" Title="Type d’objet"
+                            <controls:SelectField x:Name="TypeField" Grid.Column="1" Title="Type d’objet"
                                               Value="Manuels"
                                               Options="Tous les types,Manuels,Meubles,Appareils" />
                     </Grid>
@@ -48,20 +48,11 @@
                             Clicked="OnSearchClicked" />
                     <!-- Résultats -->
                     <VerticalStackLayout Spacing="12">
-                        <Label Text="2 résultats à moins de 2 km"
+                           <Label x:Name="ResultsCountLabel" Text="Résultats"
                                Style="{StaticResource TcSectionTitle}" />
-                        <Label Text="Du plus proche au plus éloigné."
+                           <Label Text="Annonces de la zone sélectionnée."
                                Style="{StaticResource TcCaption}" LineHeight="1.45" />
-                        <controls:ListingCard PhotoSource="photo_manuels.png"
-                            Title="Manuels de statistiques"
-                            Meta="Nina · La Doua · 600 m"
-                            Offer="Échange · bon état"
-                            Tapped="OnListingTapped" />
-                        <controls:ListingCard PhotoSource="photo_manuels.png"
-                            Title="Statistiques · licence 1"
-                            Meta="Inès · Charpennes · 1,4 km"
-                            Offer="Vente · 12 €"
-                            Tapped="OnListingTapped" />
+                           <VerticalStackLayout x:Name="SearchResults" Spacing="12" />
                     </VerticalStackLayout>
                     <Label Text="Voir toutes les annonces" Style="{StaticResource TcLinkLarge}">
                         <Label.GestureRecognizers>

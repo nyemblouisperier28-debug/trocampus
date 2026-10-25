@@ -30,38 +30,18 @@
                             <RoundRectangle CornerRadius="10" />
                         </Border.StrokeShape>
                         <VerticalStackLayout Spacing="12">
-                            <Label Text="5 échanges terminés" FontFamily="InterRegular"
+                            <Label x:Name="HistorySummaryLabel" Text="0 échange terminé" FontFamily="InterRegular"
                                    FontSize="22" LineHeight="1.45"
                                    TextColor="{StaticResource TcText}" />
-                            <Label Text="4 réussis · 1 échoué" FontFamily="InterRegular"
+                            <Label x:Name="HistoryEmptyLabel" Text="Aucun échange enregistré pour le moment." FontFamily="InterRegular"
                                    FontSize="13" LineHeight="1.45"
                                    TextColor="{StaticResource TcMuted}" />
                         </VerticalStackLayout>
                     </Border>
                     <!-- Filtres et période -->
                     <controls:FilterChips Items="Tous,Réussis,Échoués" SelectedIndex="0" />
-                    <controls:SelectField Title="Période" Value="Septembre 2026"
-                                          Options="Septembre 2026,Août 2026,Juillet 2026" />
                     <!-- Échanges terminés -->
-                    <VerticalStackLayout Spacing="12">
-                        <controls:ExchangeResultCard Date="24 septembre 2026"
-                            Title="Petit bureau ↔ Étagère en bois"
-                            Partner="Avec Camille Robert" />
-                        <controls:ExchangeResultCard Date="18 septembre 2026"
-                            Title="Livres de droit ↔ Atlas de géographie"
-                            Partner="Avec Nina Moreau" />
-                        <controls:ExchangeResultCard Date="10 septembre 2026"
-                            Title="Grille-pain ↔ Cafetière"
-                            Partner="Avec Adam Petit" />
-                        <controls:ExchangeResultCard IsSuccess="False"
-                            Date="5 septembre 2026"
-                            Title="Sac à dos ↔ Enceinte portable"
-                            Partner="Avec Emma Roux"
-                            Note="Rencontre sans échange d’objets." />
-                        <controls:ExchangeResultCard Date="2 septembre 2026"
-                            Title="Romans ↔ Support d’ordinateur"
-                            Partner="Avec Hugo Laurent" />
-                    </VerticalStackLayout>
+                    <VerticalStackLayout x:Name="HistoryItems" Spacing="12" />
                     <Label Text="Voir les rendez-vous à venir" Style="{StaticResource TcLinkLarge}">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnAppointmentsTapped" />

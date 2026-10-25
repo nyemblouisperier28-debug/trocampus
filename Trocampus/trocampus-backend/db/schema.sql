@@ -80,6 +80,17 @@ CREATE TABLE password_reset_tokens (
     created_at  timestamptz NOT NULL DEFAULT now()
 );
 
+-- Sessions API : le jeton brut n'est jamais persisté.
+CREATE TABLE user_sessions (
+    id          bigint GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    user_id     bigint NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    token_hash  text NOT NULL UNIQUE,
+    expires_at  timestamptz NOT NULL,
+    revoked_at  timestamptz,
+    created_at  timestamptz NOT NULL DEFAULT now()
+);
+CREATE INDEX idx_user_sessions_user ON user_sessions (user_id, expires_at DESC);
+
 -- Écran Paramètres (déduit du nom de l'écran)
 CREATE TABLE user_settings (
     user_id            bigint PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
@@ -250,6 +261,8 @@ CREATE TABLE points_transactions (
     created_at     timestamptz NOT NULL DEFAULT now()
 );
 CREATE INDEX idx_points_user ON points_transactions (user_id, created_at DESC);
+CREATE UNIQUE INDEX uq_points_invitation_reward ON points_transactions (user_id, invitation_id)
+    WHERE invitation_id IS NOT NULL AND kind = 'invitation';
 
 -- Solde, gains et dépenses : seuls les mouvements « confirmed » et « completed » comptent
 CREATE VIEW v_user_points AS

@@ -16,25 +16,8 @@
                     </VerticalStackLayout>
                     <controls:FilterChips Items="À traiter,Acceptées,Refusées" SelectedIndex="0" />
                     <VerticalStackLayout Spacing="12">
-                        <Label Text="À traiter · 2" Style="{StaticResource TcSectionTitle}" />
-                        <Border Style="{StaticResource TcPanel}">
-                            <Border.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="OnOfferTapped" />
-                            </Border.GestureRecognizers>
-                            <VerticalStackLayout Spacing="6">
-                                <Label Text="Lampe de bureau ↔ bouilloire" Style="{StaticResource TcBody14}" FontFamily="InterSemiBold" />
-                                <Label Text="Sami Benali · reçue aujourd’hui · en attente" Style="{StaticResource TcMeta12}" />
-                            </VerticalStackLayout>
-                        </Border>
-                        <Border Style="{StaticResource TcPanel}">
-                            <Border.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="OnOfferTapped" />
-                            </Border.GestureRecognizers>
-                            <VerticalStackLayout Spacing="6">
-                                <Label Text="Manuels de statistiques ↔ roman" Style="{StaticResource TcBody14}" FontFamily="InterSemiBold" />
-                                <Label Text="Nina Moreau · reçue hier · en attente" Style="{StaticResource TcMeta12}" />
-                            </VerticalStackLayout>
-                        </Border>
+                        <Label x:Name="OffersCountLabel" Text="Offres" Style="{StaticResource TcSectionTitle}" />
+                        <VerticalStackLayout x:Name="OffersResults" Spacing="12" />
                     </VerticalStackLayout>
                     <Button Text="Voir mes annonces" Style="{StaticResource TcSecondaryButton}" Clicked="OnListingsClicked" />
                 </VerticalStackLayout>
